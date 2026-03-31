@@ -9,7 +9,7 @@ fn bench_keygen(c: &mut Criterion) {
 
 fn bench_sign(c: &mut Criterion) {
     let kp  = Keypair::generate();
-    let msg = b"benchmark signing message — 64 bytes of typical tx data!!!!!";
+    let msg = b"benchmark signing message -- 64 bytes of typical tx data!!!!!";
     c.bench_function("sign message (Ed25519)", |b| {
         b.iter(|| kp.sign(black_box(msg)))
     });
@@ -17,7 +17,7 @@ fn bench_sign(c: &mut Criterion) {
 
 fn bench_verify(c: &mut Criterion) {
     let kp  = Keypair::generate();
-    let msg = b"benchmark verify message — typical tx data length here!!!!!";
+    let msg = b"benchmark verify message -- typical tx data length here!!!!!";
     let sig = kp.sign(msg);
     c.bench_function("verify signature (Ed25519)", |b| {
         b.iter(|| kp.public.verify(black_box(msg), black_box(&sig)))
