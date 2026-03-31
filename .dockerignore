@@ -1,0 +1,17 @@
+# Не копируем в Docker образ — ускоряет сборку
+target/
+data/
+*.zip
+*.log
+.git/
+.github/
+keystore.json
+node.toml
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

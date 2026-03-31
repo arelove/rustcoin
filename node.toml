@@ -1,0 +1,36 @@
+# ╔══════════════════════════════════════════════════════════╗
+# ║           RustCoin Node Configuration                   ║
+# ╚══════════════════════════════════════════════════════════╝
+
+# Директория для хранения данных ноды (БД, логи, keystore)
+data_dir = "./data"
+
+# Название сети: "mainnet" | "testnet" | "devnet"
+network = "devnet"
+
+# ─── P2P Network ─────────────────────────────────────────────────────────────
+[p2p]
+port        = 8333
+max_peers   = 50
+
+# Бутстрап-ноды (список известных адресов для первого подключения)
+bootstrap_peers = [
+    # "/ip4/1.2.3.4/tcp/8333",
+]
+
+# ─── RPC Server ──────────────────────────────────────────────────────────────
+[rpc]
+enabled = true
+host    = "127.0.0.1"
+port    = 8545
+cors    = true   # разрешить запросы с других origin (нужно для block explorer)
+
+# ─── Mining (раскомментируй для включения) ───────────────────────────────────
+[mining]
+coinbase_address = "1KzD2DQZHqWsyKpV2pjtWadAQyGgiofKhD"
+threads = 0   # 0 = автоматически (по числу ядер)
+
+# ─── Logging ─────────────────────────────────────────────────────────────────
+[log]
+level  = "info"    # trace | debug | info | warn | error
+format = "pretty"  # pretty | json | compact

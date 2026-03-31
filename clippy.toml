@@ -1,0 +1,10 @@
+# clippy.toml — настройки линтера
+# Максимальная строгость = чистый, профессиональный код
+
+msrv = "1.75.0"
+
+# Ограничения сложности
+cognitive-complexity-threshold = 15
+too-many-arguments-threshold   = 7
+too-many-lines-threshold       = 100
+type-complexity-threshold      = 250

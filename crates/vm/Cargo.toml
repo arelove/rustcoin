@@ -1,0 +1,30 @@
+[package]
+name        = "rc-vm"
+description = "WebAssembly smart contract virtual machine (wasmtime-based)"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives = { workspace = true }
+rc-storage    = { workspace = true }
+
+wasmtime      = { workspace = true }
+serde         = { workspace = true }
+serde_json    = { workspace = true }
+thiserror     = { workspace = true }
+tracing       = { workspace = true }
+bytes         = { workspace = true }
+
+[dev-dependencies]
+wat       = { workspace = true }
+tempfile  = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name    = "contract_execution"
+harness = false

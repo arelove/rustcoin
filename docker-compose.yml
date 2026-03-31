@@ -1,0 +1,114 @@
+
+# ╔══════════════════════════════════════════════════════════╗
+# ║  docker-compose.yml                                     ║
+# ║                                                         ║
+# ║  Сервисы:                                               ║
+# ║    dev      — среда разработки (bash + cargo)           ║
+# ║    node1    — майнер (нода 1)                           ║
+# ║    node2    — нода 2                                    ║
+# ║    node3    — нода 3                                    ║
+# ║                                                         ║
+# ║  Запуск devnet:  docker compose up node1 node2 node3    ║
+# ║  Разработка:     docker compose run --rm dev            ║
+# ╚══════════════════════════════════════════════════════════╝
+
+x-node-base: &node-base
+  build:
+    context: .
+    target: runtime
+  restart: unless-stopped
+  networks:
+    - quench-net
+
+services:
+
+  # ─── Среда разработки ──────────────────────────────────────────────────────
+  dev:
+    build:
+      context: .
+      target: dev
+    container_name: quench-dev
+    volumes:
+      # Монтируем весь проект внутрь — изменения сразу видны
+      - .:/app
+      # Кэш cargo — не скачивать зависимости заново при каждом запуске
+      - cargo-cache:/usr/local/cargo/registry
+      - cargo-git:/usr/local/cargo/git
+      - target-cache:/app/target
+    working_dir: /app
+    environment:
+      - RUST_LOG=debug
+      - RUST_BACKTRACE=1
+    networks:
+      - quench-net
+    stdin_open: true
+    tty: true
+
+  # ─── Нода 1 — Майнер ───────────────────────────────────────────────────────
+  node1:
+    <<: *node-base
+    container_name: quench-node1
+    command: >
+      node start
+      --p2p-port 8333
+      --rpc-port 8545
+    ports:
+      - "8333:8333"   # P2P (доступен снаружи для других нод)
+      - "8545:8545"   # RPC (открыт для тестирования)
+    volumes:
+      - node1-data:/data
+    environment:
+      - RUST_LOG=quench=info,libp2p=warn
+      - DATA_DIR=/data
+
+  # ─── Нода 2 ────────────────────────────────────────────────────────────────
+  node2:
+    <<: *node-base
+    container_name: quench-node2
+    command: >
+      node start
+      --p2p-port 8334
+      --rpc-port 8546
+      --peer /ip4/node1/tcp/8333
+    ports:
+      - "8334:8334"
+      - "8546:8546"
+    volumes:
+      - node2-data:/data
+    environment:
+      - RUST_LOG=quench=info,libp2p=warn
+    depends_on:
+      - node1
+
+  # ─── Нода 3 ────────────────────────────────────────────────────────────────
+  node3:
+    <<: *node-base
+    container_name: quench-node3
+    command: >
+      node start
+      --p2p-port 8335
+      --rpc-port 8547
+      --peer /ip4/node1/tcp/8333
+    ports:
+      - "8335:8335"
+      - "8547:8547"
+    volumes:
+      - node3-data:/data
+    environment:
+      - RUST_LOG=quench=info,libp2p=warn
+    depends_on:
+      - node1
+
+# ─── Тома для хранения данных ──────────────────────────────────────────────
+volumes:
+  node1-data:
+  node2-data:
+  node3-data:
+  cargo-cache:
+  cargo-git:
+  target-cache:
+
+# ─── Внутренняя сеть (ноды видят друг друга по имени сервиса) ──────────────
+networks:
+  quench-net:
+    driver: bridge

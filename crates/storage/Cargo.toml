@@ -1,0 +1,28 @@
+[package]
+name        = "rc-storage"
+description = "RocksDB-backed persistent storage for blocks, transactions and state"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives = { workspace = true }
+
+rocksdb       = { workspace = true }
+serde         = { workspace = true }
+serde_json    = { workspace = true }
+thiserror     = { workspace = true }
+tracing       = { workspace = true }
+bytes         = { workspace = true }
+
+[dev-dependencies]
+tempfile  = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name    = "storage_rw"
+harness = false

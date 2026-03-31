@@ -1,0 +1,53 @@
+/target
+/data
+*.lock.bak
+keystore.json
+*.wasm
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Criterion benchmark output (keep HTML reports in /target)
+/criterion/
+
+# Compiled contracts (regenerate with cargo build)
+/contracts/*/target/
+
+# Node config overrides (node.toml — шаблон, но личные копии не нужны в репо)
+node-dev.toml
+node-local.toml
+*.local.toml
+
+# Логи нод (devnet.sh пишет в /tmp, но на месте могут появиться и локальные)
+*.log
+
+# Оптимизированные WASM-артефакты (результат wasm-opt, не исходник)
+*_opt.wasm
+token_opt.wasm
+
+# Keystore файлы любого имени (сейчас только keystore.json, но бывают именованные)
+*.keystore.json
+keystore-*.json
+
+# Данные devnet при локальном запуске (если вдруг кто-то меняет путь с /tmp на ./devnet)
+/devnet-data/
+
+# cargo-fuzz артефакты (в roadmap есть cargo-fuzz)
+/fuzz/target/
+/fuzz/corpus/
+/fuzz/artifacts/
+
+# llvm profiling data (от cargo-fuzz и cargo-llvm-cov)
+*.profraw
+*.profdata
+
+# flamegraph output (profile.bench включает debug = true — значит будут гонять perf/flamegraph)
+flamegraph.svg
+perf.data
+perf.data.old

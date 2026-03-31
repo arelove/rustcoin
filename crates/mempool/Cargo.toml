@@ -1,0 +1,23 @@
+[package]
+name        = "rc-mempool"
+description = "Transaction mempool with fee-based prioritization"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives = { workspace = true }
+rc-crypto     = { workspace = true }
+rc-storage    = { workspace = true }
+
+dashmap       = { workspace = true }
+parking_lot   = { workspace = true }
+serde         = { workspace = true }
+serde_json = { workspace = true }
+thiserror     = { workspace = true }
+tracing       = { workspace = true }
+tokio         = { workspace = true }

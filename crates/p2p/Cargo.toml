@@ -1,0 +1,25 @@
+[package]
+name        = "rc-p2p"
+description = "libp2p-based peer-to-peer network layer"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives = { workspace = true }
+
+libp2p        = { workspace = true }
+tokio         = { workspace = true }
+tokio-util    = { workspace = true }
+futures       = { workspace = true }
+serde         = { workspace = true }
+serde_json    = { workspace = true }
+thiserror     = { workspace = true }
+tracing       = { workspace = true }
+bytes         = { workspace = true }
+
+libp2p-swarm-derive = "0.34" 

@@ -1,0 +1,20 @@
+# .cargo/config.toml
+# Настройки сборки для всего workspace
+
+[build]
+# Используй mold — самый быстрый линкер (установи: sudo apt install mold)
+# Или lld на macOS: brew install llvm
+# rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+
+[alias]
+# Удобные алиасы для частых команд
+check-all  = "check --workspace --all-targets --all-features"
+test-all   = "test --workspace --all-features"
+lint       = "clippy --workspace --all-targets --all-features -- -D warnings"
+doc-open   = "doc --workspace --no-deps --open"
+audit      = "audit --deny warnings"
+
+[env]
+# Переменные окружения по умолчанию
+RUST_BACKTRACE = "1"
+RUST_LOG       = "rustcoin=debug,libp2p=warn"

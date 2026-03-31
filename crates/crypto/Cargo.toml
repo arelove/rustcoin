@@ -1,0 +1,34 @@
+[package]
+name        = "rc-crypto"
+description = "Cryptographic primitives: key generation, signing, verification"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives    = { workspace = true }
+
+ed25519-dalek    = { workspace = true }
+k256             = { workspace = true }
+sha2             = { workspace = true }
+sha3             = { workspace = true }
+ripemd           = { workspace = true }
+rand             = { workspace = true }
+rand_core        = { workspace = true }
+zeroize          = { workspace = true }
+bs58             = { workspace = true }
+hex              = { workspace = true }
+serde            = { workspace = true }
+thiserror        = { workspace = true }
+
+[dev-dependencies]
+criterion     = { workspace = true }
+proptest      = { workspace = true }
+
+[[bench]]
+name    = "signing"
+harness = false

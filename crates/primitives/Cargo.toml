@@ -1,0 +1,30 @@
+[package]
+name        = "rc-primitives"
+description = "Core blockchain types: Block, Transaction, Address, Hash"
+readme      = "README.md"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+serde       = { workspace = true }
+serde_json  = { workspace = true }
+sha2        = { workspace = true }
+sha3        = { workspace = true }
+hex         = { workspace = true }
+bs58        = { workspace = true }
+bytes       = { workspace = true }
+thiserror   = { workspace = true }
+chrono      = { workspace = true }
+
+[dev-dependencies]
+proptest    = { workspace = true }
+criterion   = { workspace = true }
+
+[[bench]]
+name    = "block_hashing"
+harness = false

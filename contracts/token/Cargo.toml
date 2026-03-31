@@ -1,0 +1,19 @@
+[package]
+name    = "quench-token"
+version = "0.1.0"
+edition = "2021"
+
+# WASM-контракты компилируются отдельно с target wasm32-unknown-unknown
+# cargo build --target wasm32-unknown-unknown --release
+
+[lib]
+crate-type = ["cdylib"]  # Dynamic library → .wasm
+
+[dependencies]
+# В WASM контрактах нет std — только no_std + alloc
+wee_alloc = "0.4"  # Минималистичный аллокатор для WASM
+
+[profile.release]
+opt-level = "z"     # Минимальный размер WASM
+lto       = true
+panic     = "abort"

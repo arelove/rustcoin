@@ -1,0 +1,26 @@
+[package]
+name        = "rc-wallet"
+description = "Key management, transaction signing, HD wallet (BIP-32)"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives = { workspace = true }
+rc-crypto     = { workspace = true }
+
+serde         = { workspace = true }
+serde_json    = { workspace = true }
+thiserror     = { workspace = true }
+tracing       = { workspace = true }
+zeroize       = { workspace = true }
+rand          = { workspace = true }
+hex           = { workspace = true }
+sha2          = { workspace = true }
+
+[dev-dependencies]
+tempfile  = { workspace = true }

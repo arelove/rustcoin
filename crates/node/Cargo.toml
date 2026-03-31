@@ -1,0 +1,38 @@
+[package]
+name        = "rc-node"
+description = "Full node: orchestrates all crates into a running blockchain node"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives = { workspace = true }
+rc-crypto     = { workspace = true }
+rc-consensus  = { workspace = true }
+rc-storage    = { workspace = true }
+rc-mempool    = { workspace = true }
+rc-p2p        = { workspace = true }
+rc-vm         = { workspace = true }
+rc-rpc        = { workspace = true }
+rc-wallet     = { workspace = true }
+
+tokio         = { workspace = true }
+tokio-util    = { workspace = true }
+serde         = { workspace = true }
+config        = { workspace = true }
+toml          = { workspace = true }
+thiserror     = { workspace = true }
+tracing       = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow        = { workspace = true }
+parking_lot   = { workspace = true }
+
+
+[dev-dependencies]
+tempfile  = { workspace = true }
+rc-storage = { workspace = true }
+rc-primitives = { workspace = true }

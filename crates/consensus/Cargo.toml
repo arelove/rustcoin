@@ -1,0 +1,30 @@
+[package]
+name        = "rc-consensus"
+description = "Proof-of-Work consensus engine: mining, difficulty adjustment, chain selection"
+
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+authors.workspace     = true
+license.workspace     = true
+repository.workspace  = true
+
+[dependencies]
+rc-primitives = { workspace = true }
+rc-crypto     = { workspace = true }
+rc-storage    = { workspace = true }
+
+serde         = { workspace = true }
+thiserror     = { workspace = true }
+tracing       = { workspace = true }
+tokio         = { workspace = true }
+tokio-util    = { workspace = true }
+rayon         = { workspace = true }
+
+[dev-dependencies]
+criterion  = { workspace = true }
+tokio-test = { workspace = true }
+
+[[bench]]
+name    = "mining"
+harness = false
