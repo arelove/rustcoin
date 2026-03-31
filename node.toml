@@ -27,7 +27,7 @@ cors    = true   # разрешить запросы с других origin (н�
 
 # ─── Mining (раскомментируй для включения) ───────────────────────────────────
 [mining]
-coinbase_address = "1KzD2DQZHqWsyKpV2pjtWadAQyGgiofKhD"
+coinbase_address = "YOUR_ADDRESS_HERE"
 threads = 0   # 0 = автоматически (по числу ядер)
 
 # ─── Logging ─────────────────────────────────────────────────────────────────
