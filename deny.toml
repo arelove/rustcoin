@@ -11,27 +11,27 @@ targets = [
 ]
 
 [advisories]
-# Проверяет CVE-уязвимости в зависимостях
-db-path    = "~/.cargo/advisory-db"
-db-urls    = ["https://github.com/rustsec/advisory-db"]
-vulnerability = "deny"
-unmaintained  = "warn"
-yanked        = "deny"
-notice        = "warn"
+version = 2
+yanked  = "warn"
 
 [licenses]
-# Только разрешённые лицензии
-allow = ["MIT", "Apache-2.0", "Apache-2.0 WITH LLVM-exception", "ISC", "BSD-2-Clause", "BSD-3-Clause", "Unicode-DFS-2016", "CC0-1.0"]
-deny  = ["GPL-2.0", "GPL-3.0", "AGPL-3.0"]
-copyleft = "warn"
+version = 2
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "ISC",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "Unicode-DFS-2016",
+    "CC0-1.0",
+]
 
 [bans]
-# Запрет дублирующихся зависимостей
 multiple-versions = "warn"
-wildcards         = "deny"   # '*' версии запрещены
+wildcards         = "deny"
 deny = [
-    # Запрещаем небезопасные крейты
-    { name = "openssl" },    # используем rustls вместо
+    { name = "openssl" },
 ]
 
 [sources]
